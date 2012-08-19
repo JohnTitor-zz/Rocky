@@ -26,7 +26,7 @@ namespace "Math"
 			# @param 'x' the first component
 			# @param 'y' the second component
 			# @param 'z' the third component
-			set: (@x, @y, @z) =>
+			set: (@x, @y, @z) ->
 			
 			# \Brief Add components to a new
 			# vector
@@ -34,7 +34,7 @@ namespace "Math"
 			# @param 'x' the first component
 			# @param 'y' the second component
 			# @param 'z' the third component
-			add: (x, y, z) =>
+			add: (x, y, z) ->
 				return new Vector3D(@x + x, @y + y, @z + z)
 			
 			# \Brief Add components to this
@@ -43,7 +43,7 @@ namespace "Math"
 			# @param 'x' the first component
 			# @param 'y' the second component
 			# @param 'z' the third component
-			addLocal: (x, y, z) =>
+			addLocal: (x, y, z) ->
 				@x += x
 				@y += y
 				@z += z
@@ -54,7 +54,7 @@ namespace "Math"
 			#
 			# @param 'x' the first component
 			# @param 'y' the second component
-			sub: (x, y, z) =>
+			sub: (x, y, z) ->
 				return new Vector3D(@x - x, @y - y, @z - z)
 			
 			# \Brief Substract components to this
@@ -63,7 +63,7 @@ namespace "Math"
 			# @param 'x' the first component
 			# @param 'y' the second component
 			# @param 'z' the third component
-			subLocal: (x, y, z) =>
+			subLocal: (x, y, z) ->
 				@x -= x
 				@y -= y
 				@z -= z
@@ -73,14 +73,14 @@ namespace "Math"
 			# vector
 			#
 			# @param 'scalar' the scalar component
-			mult: (scalar) =>
+			mult: (scalar) ->
 				return new Vector3D(@x * scalar, @y * scalar, @z * scalar)
 				
 			# \Brief Multiplies components to this
 			# vector
 			#
 			# @param 'scalar' the scalar component
-			multLocal: (scalar) =>
+			multLocal: (scalar) ->
 				@x *= scalar
 				@y *= scalar
 				@z *= scalar
@@ -90,14 +90,14 @@ namespace "Math"
 			# vector
 			#
 			# @param 'scalar' the scalar component	
-			divide: (scalar) =>
+			divide: (scalar) ->
 				return new Vector3D(@x / scalar, @y / scalar, @z / scalar)
 				
 			# \Brief Divides components to this
 			# vector
 			#
 			# @param 'scalar' the scalar component
-			divideLocal: (scalar) =>
+			divideLocal: (scalar) ->
 				@x /= scalar
 				@y /= scalar
 				@z /= scalar
@@ -109,7 +109,7 @@ namespace "Math"
 			# @param 'x' the first component
 			# @param 'y' the second component
 			# @param 'z' the third component
-			dot: (x, y, z) =>
+			dot: (x, y, z) ->
 				return @x * x + @y * y + @z * z
 			
 			# \Brief calculates the cross product of this vector with
@@ -118,7 +118,7 @@ namespace "Math"
 			# @param 'x' the first component
 			# @param 'y' the second component
 			# @param 'z' the third component
-			cross: (x, y, z) =>
+			cross: (x, y, z) ->
 				return new Vector3D(@y * z - @z * y,
 					@z * x - @x * z, @x * y - @y * x)
 					
@@ -128,7 +128,7 @@ namespace "Math"
 			# @param 'x' the first component
 			# @param 'y' the second component
 			# @param 'z' the third component
-			crossLocal: (x, y, z) =>
+			crossLocal: (x, y, z) ->
 				tempX = @y * z - @z * y
 				tempY = @z * x - @x * z
 				@z = @x * y - @y * x
@@ -139,7 +139,7 @@ namespace "Math"
 			# \Brief Project another vector with this vector
 			#
 			# @param 'vector' the another vector
-			projectVector: (vector) =>
+			projectVector: (vector) ->
 				n = @dot(vector.x, vector.y, vector.z) 	# A.B
 				d = vector.lengthSquared()			 	# |B|^2
 				return new Vector3D(vector.x, vector.y, vector.z)
@@ -150,29 +150,29 @@ namespace "Math"
 			# projection matrix
 			#
 			# @param 'matrix' the matrix to multiplies by
-			projectMatrix: (matrix) =>
+			projectMatrix: (matrix) ->
 				lW = @x * matrix.m[12] + @y * matrix.m[13] + @z * matrix.m[14] + matrix.m[15]
 				return @multMatrix(matrix).divideLocal(lW)
 					
 			# \Brief Multiplies the vector by the given matrix.
 			#
 			# @param 'matrix' the matrix to multiplies by
-			multMatrix: (matrix) =>
+			multMatrix: (matrix) ->
 				return new Vector3D(
 					@x * matrix.m[0] + @y * matrix.m[1] + @z * matrix.m[2] + matrix.m[3],
 					@x * matrix.m[4] + @y * matrix.m[5] + @z * matrix.m[6] + matrix.m[7],
 					@x * matrix.m[8] + @y * matrix.m[9] + @z * matrix.m[10] + matrix.m[11])
 					
 			# \Brief Gets if this vector is a unit vector (length() ~= 1)
-			isUnitVector: =>
+			isUnitVector: ->
 				return 0.99 < getLength() < 1.01
 				
 			# \Brief Gets the length of the vector
-			getLength: =>
+			getLength: ->
 				return Math.sqrt(@getLengthSquared())
 				
 			# \Brief Gets the length squared of the vector		
-			getLengthSquared: =>
+			getLengthSquared: ->
 				return @x * @x + @y * @y + @z * @z
 				
 			# \Brief Gets the distance between
@@ -182,7 +182,7 @@ namespace "Math"
 			# @param 'x' the first component
 			# @param 'y' the second component
 			# @param 'z' the third component
-			getDistanceSquared: (x, y, z) =>
+			getDistanceSquared: (x, y, z) ->
 				dX = @x - x
 				dY = @y - y
 				dZ = @z - z
@@ -190,7 +190,7 @@ namespace "Math"
 				
 			# \Brief makes this vector into a unit vector of
 			# itself
-			normalize: =>
+			normalize: ->
 				length = @getLengthSquared()
 				if( length != 1.0 && length != 0.0 )
 					length = 1.0 / Math.sqrt(length)
@@ -198,7 +198,7 @@ namespace "Math"
 				return this
 				
 			# \Brief Reset the vector components
-			zero: =>
+			zero: ->
 				@x = @y = @z = 0
 				
 			# \Brief Interpolate the components of this vector
@@ -207,7 +207,7 @@ namespace "Math"
 			# @param 'y' the second component
 			# @param 'z' the third component
 			# @param 'delta' time since the last call
-			interpolate: (x, y, z, delta) =>
+			interpolate: (x, y, z, delta) ->
 				@x = (1 - delta) * @x + delta * x
 				@y = (1 - delta) * @y + delta * y
 				@z = (1 - delta) * @z + delta * z
@@ -217,12 +217,12 @@ namespace "Math"
 			# the given vector are unit vectors.
 			#
 			# @param 'vector' the another vector
-			angleBetween: (vector) =>
+			angleBetween: (vector) ->
 				d = dot(vector.x, vector.y, vector.z)
 				a = Math.acos(d)
 				return a
 				
 			# \Brief Returns a string representation of this
 			# instance
-			toString: =>
-				return "[#x, #y, #z]"
+			toString: ->
+				return "[#{x}, #{y}, #{z}]"

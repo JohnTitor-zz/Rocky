@@ -4,7 +4,7 @@
 namespace "Math"
 	Matrix3D :
 		class Matrix3D
-
+		
 			# \Brief default constructor
 			# of the Matrix3D
 			#
@@ -16,7 +16,7 @@ namespace "Math"
 				@setToIdentity()
 		
 			# \Brief Returns the determinant of this matrix
-			getDeterminant: =>
+			getDeterminant: ->
 				fCo00 = @m[4] * @m[8] - @m[5] * @m[7]
 				fCo10 = @m[5] * @m[6] - @m[3] * @m[8]
 				fCo20 = @m[3] * @m[7] - @m[4] * @m[6]
@@ -24,7 +24,7 @@ namespace "Math"
 				
 			# \Brief Sets this matrix to a identity
 			# matrix
-			setToIdentity: =>
+			setToIdentity: ->
 				@m[1] = @m[2] = @m[3] = m[4] = @m[6] = @m[7] = 0.0
 				@m[0] = @m[4] = @m[8] = 1.0
 				return this
@@ -32,12 +32,12 @@ namespace "Math"
 			# \Brief Sets the value of the matrix
 			#
 			# @param 'values' the array of values
-			set: (values...) =>
+			set: (values...) ->
 				@m[i] = value for value in values
 				return this
 				
 			# \Brief Set this matrix to inverse of itself
-			toInverse: =>
+			toInverse: ->
 				det = @getDeterminant()
 				if( Math.abs(det) <= 0.0 )
 					return @zero()
@@ -68,7 +68,7 @@ namespace "Math"
 			#
 			# @param 'angle' the angle to rotate (in radians)
 			# @param 'axis' the axis of rotation (already normalized)
-			fromAngleNormalAxis: (angle, axis) =>
+			fromAngleNormalAxis: (angle, axis) ->
 				fCos = Math.cos(angle)
 				fSin = Math.sin(angle)
 				fOneMinusCon = 1.0 - fCos
@@ -94,14 +94,14 @@ namespace "Math"
 				return this
 				
 			# \Brief Sets all components to 0
-			zero: =>
+			zero: ->
 				item = 0 for item in @m
 				return this
 				
 			# \Brief Scale the matrix by a vector
 			#
 			# @param 'vector' the scale vector
-			scale: (vector) =>
+			scale: (vector) ->
 				@m[0] *= vector.x
 				@m[3] *= vector.x
 				@m[6] *= vector.x
@@ -116,14 +116,14 @@ namespace "Math"
 			# \Brief Multiplies the matrix by a given scalar
 			#
 			# @param 'scalar' the scalar to multiply this matrix by
-			mult: (scalar) =>
+			mult: (scalar) ->
 				item *= scalar for item in @m
 				return this
 				
 			# \Brief Multiplies the matrix by a given matrix
 			#
 			# @param 'matrix' the matrix to multiply this matrix by
-			multMatrix: (matrix) =>
+			multMatrix: (matrix) ->
 				temp00 = @m[0] * matrix.m[0] + @m[1] * matrix.m[3] + @m[2] * matrix.m[6];
 				temp01 = @m[0] * matrix.m[1] + @m[1] * matrix.m[4] + @m[2] * matrix.m[7];
 				temp02 = @m[0] * matrix.m[2] + @m[1] * matrix.m[5] + @m[2] * matrix.m[8];
@@ -146,7 +146,5 @@ namespace "Math"
 				
 			# \Brief Returns a string representation of this
 			# instance
-			toString: =>
-				return "[ #m[0], #m[1], #m[2]\n 
-						 #m[3], #m[4], #m[5]\n 
-						 #m[6], #m[7], #m[8] ]"
+			toString: ->
+				return "[ #{m[0]}, #{m[1]}, #{m[2]}\n #{m[3]}, #{m[4]}, #{m[5]}\n #{m[6]}, #{m[7]}, #{m[8]} ]"

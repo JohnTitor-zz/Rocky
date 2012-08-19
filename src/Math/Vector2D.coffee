@@ -21,14 +21,14 @@ namespace "Math"
 			#
 			# @param 'x' the first component
 			# @param 'y' the second component
-			set: (@x, @y) =>
+			set: (@x, @y) ->
 			
 			# \Brief Add components to a new
 			# vector
 			#
 			# @param 'x' the first component
 			# @param 'y' the second component
-			add: (x, y) =>
+			add: (x, y) ->
 				return new Vector2D(@x + x, @y + y)
 			
 			# \Brief Add components to this
@@ -36,7 +36,7 @@ namespace "Math"
 			#
 			# @param 'x' the first component
 			# @param 'y' the second component
-			addLocal: (x, y) =>
+			addLocal: (x, y) ->
 				@x += x
 				@y += y
 				return this
@@ -46,7 +46,7 @@ namespace "Math"
 			#
 			# @param 'x' the first component
 			# @param 'y' the second component
-			sub: (x, y) =>
+			sub: (x, y) ->
 				return new Vector2D(@x - x, @y - y)
 			
 			# \Brief Substract components to this
@@ -54,7 +54,7 @@ namespace "Math"
 			#
 			# @param 'x' the first component
 			# @param 'y' the second component
-			subLocal: (x, y) =>
+			subLocal: (x, y) ->
 				@x -= x
 				@y -= y
 				return this
@@ -63,14 +63,14 @@ namespace "Math"
 			# vector
 			#
 			# @param 'scalar' the scalar component
-			mult: (scalar) =>
+			mult: (scalar) ->
 				return new Vector2D(@x * scalar, @y * scalar)
 				
 			# \Brief Multiplies components to this
 			# vector
 			#
 			# @param 'scalar' the scalar component
-			multLocal: (scalar) =>
+			multLocal: (scalar) ->
 				@x *= scalar
 				@y *= scalar
 				return this
@@ -79,14 +79,14 @@ namespace "Math"
 			# vector
 			#
 			# @param 'scalar' the scalar component	
-			divide: (scalar) =>
+			divide: (scalar) ->
 				return new Vector2D(@x / scalar, @y / scalar)
 				
 			# \Brief Divides components to this
 			# vector
 			#
 			# @param 'scalar' the scalar component
-			divideLocal: (scalar) =>
+			divideLocal: (scalar) ->
 				@x /= scalar
 				@y /= scalar
 				return this
@@ -96,7 +96,7 @@ namespace "Math"
 			#
 			# @param 'x' the first component
 			# @param 'y' the second component
-			dot: (x, y) =>
+			dot: (x, y) ->
 				return @x * x + @y * y
 			
 			# \Brief Calculates de determinant of this vector
@@ -104,7 +104,7 @@ namespace "Math"
 			#
 			# @param 'x' the first component
 			# @param 'y' the second component 
-			determinant: (x, y) =>
+			determinant: (x, y) ->
 				return (@x * y) - (@y * x)
 				
 			# \Brief Interpolate the components of this vector
@@ -112,16 +112,16 @@ namespace "Math"
 			# @param 'x' the first component
 			# @param 'y' the second component 
 			# @param 'delta' time since the last call
-			interpolate: (x, y, delta) =>
+			interpolate: (x, y, delta) ->
 				@x = (1 - delta) * @x + delta * x
 				@y = (1 - delta) * @y + delta * y
 				
 			# \Brief Gets the length of the vector
-			getLength: =>
+			getLength: ->
 				return Math.sqrt(@getLengthSquared())
 			
 			# \Brief Gets the length squared of the vector	
-			getLengthSquared: =>
+			getLengthSquared: ->
 				return @x * @x + @y * @y
 				
 			# \Brief Gets the distance between
@@ -130,7 +130,7 @@ namespace "Math"
 			#
 			# @param 'x' the first component
 			# @param 'y' the second component 
-			getDistanceSquared: (x, y) =>
+			getDistanceSquared: (x, y) ->
 				dX = @x - x
 				dY = @y - y
 				return (dX * dX + dY * dY)
@@ -138,26 +138,26 @@ namespace "Math"
 			# \Brief returns (in radians) the angle represented by this 
 			# Vector2D as expressed by a conversion from rectangular
 			# coordinates (x, y) to polar coordinates (r, theta)
-			getAngle: =>
+			getAngle: ->
 				return Math.atan2(y, x)
 			
 			# \Brief makes this vector into a unit vector of
 			# itself
-			normalize: =>
+			normalize: ->
 				length = @getLength()
 				if( length != 0 )
 					return @divideLocal(length)
 				return this
 				
 			# \Brief Reset the vector components
-			zero: =>
+			zero: ->
 				@x = @y = 0
 				
 			# \Brief Rotate the vector around the origin
 			#
 			# @param 'angle' the angle of the rotation
 			# @param 'isClockwise' is the rotation clockwise?
-			rotateAroundOrigin: (angle, isClockwise) =>
+			rotateAroundOrigin: (angle, isClockwise) ->
 				if( isClockwise )
 					angle = -angle;
 				newX = Math.cos(angle) * @x - sin(angle) * @y
@@ -167,5 +167,5 @@ namespace "Math"
 				
 			# \Brief Returns a string representation of this
 			# instance
-			toString: =>
-				return "[#x, #y]"	
+			toString: ->
+				return "[#{x}, #{y}]"	
