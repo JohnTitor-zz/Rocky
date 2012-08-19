@@ -4,8 +4,7 @@
 namespace "Math"
 	FastMath :
 		class FastMath
-			# \Brief Fast Inverse Square Root taken from Quake3
-			# by Chris Lomont
+			# \Brief Fastest inverse square root
 			#
 			# @param 'n' the number to find the inverse square root
 			# @param 'precision' precision of the find

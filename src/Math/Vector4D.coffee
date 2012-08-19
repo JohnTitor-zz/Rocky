@@ -230,4 +230,8 @@ namespace "Math"
 				d = dot(vector.x, vector.y, vector.z, vector.w)
 				a = Math.acos(d)
 				return a
-		
+				
+			# \Brief Returns a string representation of this
+			# instance
+			toString: =>
+				return "[#x, #y, #z, #w]"

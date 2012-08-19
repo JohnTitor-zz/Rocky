@@ -140,7 +140,7 @@ namespace "Math"
 			#
 			# @param 'vector' the another vector
 			projectVector: (vector) =>
-				n = dot(vector.x, vector.y, vector.z) 	# A.B
+				n = @dot(vector.x, vector.y, vector.z) 	# A.B
 				d = vector.lengthSquared()			 	# |B|^2
 				return new Vector3D(vector.x, vector.y, vector.z)
 					.normalize().multLocal(n / d)
@@ -151,17 +151,17 @@ namespace "Math"
 			#
 			# @param 'matrix' the matrix to multiplies by
 			projectMatrix: (matrix) =>
-				lW = @x * matrix.m30 + @y * matrix.m31 + @z * matrix.m32 + matrix.m33
-				return multMatrix(matrix).divideLocal(lW)
+				lW = @x * matrix.m[12] + @y * matrix.m[13] + @z * matrix.m[14] + matrix.m[15]
+				return @multMatrix(matrix).divideLocal(lW)
 					
 			# \Brief Multiplies the vector by the given matrix.
 			#
 			# @param 'matrix' the matrix to multiplies by
 			multMatrix: (matrix) =>
 				return new Vector3D(
-					@x * matrix.m00 + @y * matrix.m01 + @z * matrix.m02 + matrix.m03,
-					@x * matrix.m10 + @y * matrix.m11 + @z * matrix.m12 + matrix.m13,
-					@x * matrix.m20 + @y * matrix.m21 + @z * matrix.m22 + matrix.m23)
+					@x * matrix.m[0] + @y * matrix.m[1] + @z * matrix.m[2] + matrix.m[3],
+					@x * matrix.m[4] + @y * matrix.m[5] + @z * matrix.m[6] + matrix.m[7],
+					@x * matrix.m[8] + @y * matrix.m[9] + @z * matrix.m[10] + matrix.m[11])
 					
 			# \Brief Gets if this vector is a unit vector (length() ~= 1)
 			isUnitVector: =>
@@ -169,7 +169,7 @@ namespace "Math"
 				
 			# \Brief Gets the length of the vector
 			getLength: =>
-				return Math.sqrt(getLengthSquared())
+				return Math.sqrt(@getLengthSquared())
 				
 			# \Brief Gets the length squared of the vector		
 			getLengthSquared: =>
@@ -191,10 +191,10 @@ namespace "Math"
 			# \Brief makes this vector into a unit vector of
 			# itself
 			normalize: =>
-				length = getLengthSquared()
+				length = @getLengthSquared()
 				if( length != 1.0 && length != 0.0 )
 					length = 1.0 / Math.sqrt(length)
-					return multLocal(length)
+					return @multLocal(length)
 				return this
 				
 			# \Brief Reset the vector components
@@ -221,4 +221,8 @@ namespace "Math"
 				d = dot(vector.x, vector.y, vector.z)
 				a = Math.acos(d)
 				return a
-		
+				
+			# \Brief Returns a string representation of this
+			# instance
+			toString: =>
+				return "[#x, #y, #z]"

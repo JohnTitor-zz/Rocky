@@ -118,7 +118,7 @@ namespace "Math"
 				
 			# \Brief Gets the length of the vector
 			getLength: =>
-				return Math.sqrt(getLengthSquared())
+				return Math.sqrt(@getLengthSquared())
 			
 			# \Brief Gets the length squared of the vector	
 			getLengthSquared: =>
@@ -144,9 +144,9 @@ namespace "Math"
 			# \Brief makes this vector into a unit vector of
 			# itself
 			normalize: =>
-				length = getLength()
+				length = @getLength()
 				if( length != 0 )
-					return divideLocal(length)
+					return @divideLocal(length)
 				return this
 				
 			# \Brief Reset the vector components
@@ -164,3 +164,8 @@ namespace "Math"
 				newY = Math.sin(angle) * @x + cos(angle) * @y
 				@x = newX
 				@y = newY
+				
+			# \Brief Returns a string representation of this
+			# instance
+			toString: =>
+				return "[#x, #y]"	
