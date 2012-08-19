@@ -7,19 +7,14 @@ namespace "Math"
 			
 			# Constants
 			@ZERO	 = new Matrix4D().zero()
-			@IDENTITY = new Matrix4D().setToIdentity()
+			@IDENTITY = new Matrix4D()
 			
 			# Internal variables
 			@_lVex = new Vector3D(0.0, 0.0, 0.0)
 			@_lVey = new Vector3D(0.0, 0.0, 0.0)
 			@_lVez = new Vector3D(0.0, 0.0, 0.0)
 			
-			# \Brief default constructor
-			# of the Matrix4D
-			#
-			# @param 'x' the first component
-			# @param 'y' the second component
-			# @param 'z' the third component
+			# \Brief default constructor of the Matrix4D
 			constructor: ->
 				@m = new Float32Array(16)
 				@setToIdentity()
@@ -49,20 +44,20 @@ namespace "Math"
 			setToProyection: (near, far, fov, aspectRatio) ->
 				lFD = 1.0 / Math.tan((fov * (Math.PI / 180)) / 2.0)
 
-				@m[0] = lFD / aspectRatio
-				@m[4] = 0.0
-				@m[8] = 0.0
+				@m[0]  = lFD / aspectRatio
+				@m[4]  = 0.0
+				@m[8]  = 0.0
 				@m[12] = 0.0
-				@m[1] = 0.0
-				@m[5] = lFD
-				@m[9] = 0.0
+				@m[1]  = 0.0
+				@m[5]  = lFD
+				@m[9]  = 0.0
 				@m[13] = 0.0
-				@m[2] = 0.0
-				@m[6] = 0.0
+				@m[2]  = 0.0
+				@m[6]  = 0.0
 				@m[10] = (far + near) / (near - far)
 				@m[14] = -1.0
-				@m[3] = 0.0
-				@m[7] = 0.0
+				@m[3]  = 0.0
+				@m[7]  = 0.0
 				@m[11] = (2.0 * far * near) / (near - far)
 				@m[15] = 0.0
 				return this
@@ -90,20 +85,20 @@ namespace "Math"
 			# @param 'near' the near clipping plane
 			# @param 'far' the far clipping plane
 			setToOrtho: (left, right, bottom, top, near, far) ->
-				@m[0] = 2 / (right - left)
-				@m[4] = 0.0
-				@m[8] = 0.0
+				@m[0]  = 2 / (right - left)
+				@m[4]  = 0.0
+				@m[8]  = 0.0
 				@m[12] = 0.0
-				@m[1] = 0.0
-				@m[5] = 2 / (top - bottom)
-				@m[9] = 0.0
+				@m[1]  = 0.0
+				@m[5]  = 2 / (top - bottom)
+				@m[9]  = 0.0
 				@m[13] = 0.0
-				@m[2] = 0.0
-				@m[6] = 0.0
+				@m[2]  = 0.0
+				@m[6]  = 0.0
 				@m[10] = -2.0 / (far - near)
 				@m[14] = 0.0
-				@m[3] = -(right + left) / (right - left)
-				@m[7] = -(top + bottom) / (top - bottom)
+				@m[3]  = -(right + left) / (right - left)
+				@m[7]  = -(top + bottom) / (top - bottom)
 				@m[11] = -(far + near) / (far - near)
 				@m[15] = 1.0
 				return this
@@ -230,16 +225,16 @@ namespace "Math"
 			#
 			# @param 'vector' the scale vector
 			scale: (vector) ->
-				@m[0] *= vector.x
-				@m[4] *= vector.x
-				@m[8] *= vector.x
+				@m[0]  *= vector.x
+				@m[4]  *= vector.x
+				@m[8]  *= vector.x
 				@m[12] *= vector.x
-				@m[1] *= vector.y
-				@m[5] *= vector.y
-				@m[9] *= vector.y
+				@m[1]  *= vector.y
+				@m[5]  *= vector.y
+				@m[9]  *= vector.y
 				@m[13] *= vector.y
-				@m[2] *= vector.z
-				@m[6] *= vector.z
+				@m[2]  *= vector.z
+				@m[6]  *= vector.z
 				@m[10] *= vector.z
 				@m[14] *= vector.z
 				return this
@@ -287,5 +282,5 @@ namespace "Math"
 			# \Brief Returns a string representation of this
 			# instance
 			toString: ->
-				return "[ #m[0], #m[1], #m[2], #m[3]\n #m[4], #m[5], #m[6], #m[7]\n #m[8], #m[9], #m[4], #m[5]\n #m[6], #m[7], #m[14], #m[15] ]"
+				return "[ #{m[0]}, #{m[1]}, #{m[2]}, #{m[3]}\n #{m[4]}, #{m[5]}, #{m[6]}, #{m[7]}\n #{m[8]}, #{m[9]}, #{m[4]}, #{m[5]}\n #{m[6]}, #{m[7]}, #{m[14]}, #{m[15]} ]"
 			

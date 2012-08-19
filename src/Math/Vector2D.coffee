@@ -9,8 +9,7 @@ namespace "Math"
 			@ZERO 	= new Vector2D(0.0, 0.0)
 			@UNIT_XZ = new Vector2D(1.0, 1.0)
 			
-			# \Brief default constructor
-			# of the Vector2D
+			# \Brief default constructor of the Vector2D
 			#
 			# @param 'x' the first component
 			# @param 'y' the second component
@@ -145,7 +144,7 @@ namespace "Math"
 			# itself
 			normalize: ->
 				length = @getLength()
-				if( length != 0 )
+				if( length isnt 0 )
 					return @divideLocal(length)
 				return this
 				
@@ -158,7 +157,7 @@ namespace "Math"
 			# @param 'angle' the angle of the rotation
 			# @param 'isClockwise' is the rotation clockwise?
 			rotateAroundOrigin: (angle, isClockwise) ->
-				if( isClockwise )
+				if( isClockwise is true )
 					angle = -angle;
 				newX = Math.cos(angle) * @x - sin(angle) * @y
 				newY = Math.sin(angle) * @x + cos(angle) * @y

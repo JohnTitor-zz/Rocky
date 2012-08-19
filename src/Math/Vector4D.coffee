@@ -13,8 +13,7 @@ namespace "Math"
 			@UNIZ_W = new Vector4D(0.0, 0.0, 0.0, 1.0)
 			@UNIT_XYZW = new Vector4D(1.0, 1.0, 1.0, 1.0)
 			
-			# \Brief default constructor
-			# of the Vector4D
+			# \Brief default constructor of the Vector4D
 			#
 			# @param 'x' the first component
 			# @param 'y' the second component
@@ -199,7 +198,7 @@ namespace "Math"
 			# itself
 			normalize: ->
 				length = @getLengthSquared()
-				if( length != 1.0 && length != 0.0 )
+				if( length isnt 1.0 and length isnt 0.0 )
 					length = 1.0 / Math.sqrt(length)
 					return @multLocal(length)
 				return this

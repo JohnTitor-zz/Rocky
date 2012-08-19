@@ -5,12 +5,7 @@ namespace "Math"
 	Matrix3D :
 		class Matrix3D
 		
-			# \Brief default constructor
-			# of the Matrix3D
-			#
-			# @param 'x' the first component
-			# @param 'y' the second component
-			# @param 'z' the third component
+			# \Brief default constructor of the Matrix3D
 			constructor: ->
 				@m = new Float32Array(9)
 				@setToIdentity()
